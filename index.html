@@ -17,18 +17,23 @@
       color: black;
     }
 
-    .title-image {
-      width: 100vw;
-      max-width: 600px;
-      margin: 40px auto 10px;
+    img {
+      max-width: 100%;
+      height: auto;
       display: block;
+    }
+
+    .title-image {
+      width: 90%;
+      max-width: 600px;
+      margin: 60px auto 20px;
     }
 
     .slider {
       position: relative;
       width: 90%;
       max-width: 400px;
-      margin: 30px auto 20px;
+      margin: 80px auto 30px;
       overflow: hidden;
       border-radius: 20px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.4);
@@ -73,22 +78,68 @@
       color: black;
     }
 
-    /* SEZIONI */
     section {
-      padding: 80px 20px;
-      max-width: 700px;
+      padding: 60px 20px;
+      max-width: 800px;
       margin: auto;
     }
 
     h2 {
-      font-size: 32px;
+      font-size: 2rem;
       margin-bottom: 20px;
       color: darkslategray;
     }
 
     p {
-      font-size: 18px;
+      font-size: 1.1rem;
       color: #333;
+      margin-bottom: 20px;
+    }
+
+    /* IMMAGINI FINALI */
+    .work-gallery {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 60px;
+    }
+
+    .work-gallery img {
+      width: 40%;
+      max-width: 200px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .work-gallery img:hover {
+      transform: scale(1.05);
+    }
+
+    /* LIGHTBOX */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+
+    .lightbox:active {
+      display: none;
     }
 
     /* MENU FLOTANTE */
@@ -132,6 +183,21 @@
     .menu-items a:hover {
       background: #ddd;
     }
+
+    @media (max-width: 600px) {
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .work-gallery img {
+        width: 80%;
+        max-width: 300px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -153,27 +219,30 @@
     </div>
   </div>
 
- 
   <!-- Barra scritta -->
   <div class="bar">workshop con Laura Massa</div>
 
   <!-- SEZIONE About -->
   <section id="about">
     <h2>About Me</h2>
-    <p>Mi chiamo Viola, sono un illustratrice in fase di creazione. BA ISIA di Urbino.</p>
+    <p>Mi chiamo Viola, sono un'illustratrice in fase di creazione. BA ISIA di Urbino.</p>
   </section>
-
 
   <!-- SEZIONE My Work -->
   <section id="work">
     <h2>My Work</h2>
     <p>Qui trovi una selezione dei miei lavori: disegni, stampe, sperimentazioni digitali e manuali. Ogni immagine racconta una storia, un'intuizione o una ricerca.</p>
+
+    <div class="work-gallery">
+      <img src="1.jpg" alt="Lavoro 1" onclick="openLightbox(this.src)">
+      <img src="2.jpg" alt="Lavoro 2" onclick="openLightbox(this.src)">
+    </div>
   </section>
-<!-- Immagini work -->
-<img src="1.jpg" alt="Titolo Portfolio" class="title-image" id="My work"
-  margin = 10 px>
-  <img src="2.jpg" alt="Titolo Portfolio" class="title-image" id="My work"
-  margin = 10 px> 
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightbox-img" src="" alt="Zoom immagine" />
+  </div>
 
   <!-- MENU FLOTANTE -->
   <div class="menu-container">
@@ -205,6 +274,18 @@
     function toggleMenu() {
       const menu = document.getElementById('menuItems');
       menu.style.display = menu.style.display === 'flex' ? 'none' : 'flex';
+    }
+
+    // LIGHTBOX FUNCTIONS
+    function openLightbox(src) {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImg = document.getElementById('lightbox-img');
+      lightboxImg.src = src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').style.display = 'none';
     }
   </script>
 
