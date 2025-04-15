@@ -4,106 +4,109 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Portfolio di Viola</title>
-
   <style>
+    
+
     body {
-      color: white;
-      font-family: Helvetica, Arial, sans-serif;
-      background-color: olive;
-      padding: 20px;
+      background: whitesmoke;
+      font-family: 'ViolaFont', Helvetica, sans-serif;
+      margin: 200;
       text-align: center;
-    }
-
-    h1 {
-      font-size: 60px;
-      margin-bottom: 40px;
-      display: inline-block;
-    }
-
-    /* Rimbalzo lettere */
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-20px); }
-    }
-
-    .bounce span {
-      display: inline-block;
-      animation: bounce 1s ease-in-out infinite;
-    }
-
-    /* Delay animazione per ogni lettera */
- .bounce span:nth-child(1) { animation-delay: 0s; }
-    .bounce span:nth-child(2) { animation-delay: 0.1s; }
-    .bounce span:nth-child(3) { animation-delay: 0.2s; }
-    .bounce span:nth-child(4) { animation-delay: 0.3s; }
-    .bounce span:nth-child(5) { animation-delay: 0.4s; }
-    .bounce span:nth-child(6) { animation-delay: 0.5s; }
-    .bounce span:nth-child(7) { animation-delay: 0.6s; }
-    .bounce span:nth-child(8) { animation-delay: 0.7s; }
-    .bounce span:nth-child(9) { animation-delay: 0.8s; }
-    .bounce span:nth-child(10) { animation-delay: 0.9s; }
-    .bounce span:nth-child(11) { animation-delay: 1s; }
-    .bounce span:nth-child(12) { animation-delay: 1.1s; }
-    .bounce span:nth-child(13) { animation-delay: 1.2s; }
-    .bounce span:nth-child(14) { animation-delay: 1.3s; }
-
-    /* Fiore che gira */
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-
-    .flower {
-      width: 100px;
-      height: 100px;
-      animation: rotate 10s linear infinite;
-      margin: 20px auto;
-    }
-
-    /* Stile immagine */
-    .my-photo {
-      width: 300px;
-      margin-top: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    .caption {
-      font-size: 20px;
-      margin-top: 10px;
       color: white;
+    }
+
+    .title-image {
+      width: 100vw;
+      max-width: 600px;
+      margin: 40px auto 10px;
+      display: block;
+    }
+
+    .slider {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      margin: 60px auto 20px;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+    }
+
+    .nav button {
+      background: rgba(0,0,0,0.5);
+      border: none;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .bar {
+      margin-top: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px 20px;
+      font-size: 20px;
       font-style: italic;
+      border-radius: 10px;
+      display: inline-block;
     }
   </style>
 </head>
 <body>
 
-  <!-- Titolo animato -->
-  <h1 class="bounce">
-    <span>V</span><span>i</span><span>o</span><span>l</span><span>a</span>
-    <span> </span>
-    <span>S</span><span>h</span><span>i</span><span>l</span><span>l</span><span>i</span><span>t</span><span>o</span>
-  </h1>
+  <!-- Immagine titolo -->
+  <img src="TITOLO-WEB.gif" alt="Titolo Portfolio" class="title-image">
 
-  <!-- Fiore rotante -->
-  <div class="flower">
-    <svg viewBox="0 0 64 64" fill="palevioletred" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="32" cy="32" r="6" fill="gold"/>
-      <path d="M32 12a6 6 0 1 0-12 0 6 6 0 1 0 12 0zm20 20a6 6 0 1 0 0-12 6 6 0 1 0 0 12zM32 52a6 6 0 1 0 12 0 6 6 0 1 0-12 0zM12 32a6 6 0 1 0 0 12 6 6 0 1 0 0-12zM20 20a6 6 0 1 0-8.5-8.5 6 6 0 1 0 8.5 8.5zm24 0a6 6 0 1 0 8.5-8.5 6 6 0 1 0-8.5 8.5zm0 24a6 6 0 1 0 8.5 8.5 6 6 0 1 0-8.5-8.5zM20 44a6 6 0 1 0-8.5 8.5 6 6 0 1 0 8.5-8.5z"/>
-    </svg>
+  <!-- Slider immagini -->
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="two lovers.jpg" alt="Two Lovers">
+      <img src="scan 6.jpeg" alt="Divine Masculine">
+      <img src="scan 6 1.jpeg" alt="Divine Animal">
+      <img src="scan 2.jpeg" alt="Divine Animal">
+    </div>
+    <div class="nav">
+      <button onclick="prevSlide()">‹</button>
+      <button onclick="nextSlide()">›</button>
+    </div>
   </div>
 
-  <!-- Immagine + descrizione -->
-  <img src="two lovers.jpg" alt="Two Lovers" class="my-photo">
-  <div class="caption">Two Lovers</div>
+  <!-- Barra scritta -->
+  <div class="bar">workshop con Laura Massa</div>
 
-<!-- Immagine + descrizione -->
-<img src="scan 6.jpeg" alt="divine masculine" class="my-photo">
-<div class="caption">Two Lovers</div>
+  <script>
+    let current = 0;
+    const slides = document.getElementById('slides');
+    const total = slides.children.length;
 
-<!-- Immagine + descrizione -->
-<img src="scan 6 1.jpeg" alt="divine animal" class="my-photo">
-<div class="caption">Two Lovers</div>
+    function showSlide(index) {
+      current = (index + total) % total;
+      slides.style.transform = `translateX(-${current * 100}%)`;
+    }
 
+    function nextSlide() { showSlide(current + 1); }
+    function prevSlide() { showSlide(current - 1); }
+
+    setInterval(nextSlide, 6000);
+  </script>
 </body>
 </html>
